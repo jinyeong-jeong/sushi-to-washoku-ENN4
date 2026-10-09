@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sushi & Washoku Hitomusubi</title>
+
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <!-- 상단 헤더 (햄버거 버튼 이벤트 부여) -->
+<header class="page-header">
+  <div class="header-logo" onclick="goToStartPage()">
+    <img src="./SVG/ennlogo-kiriko.svg" alt="鮨と和食 人結">
+  </div>
+  <!-- [핵심 Fix] 햄버거 버튼 클릭 시 openLobby() 바인딩 -->
+  <div class="header-hamburger" onclick="openLobby(event)">
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- [수정] 화면 전체 영역 클릭 시 어디를 눌러도 조명 확장 시작 -->
+<div id="start-page" onclick="startLightExpansion(event)">
+  <svg class="thread-svg-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
+    <path class="red-thread-path" d="M -50 300 C 200 150, 300 450, 500 300 C 700 150, 800 450, 1050 300" />
+    <path class="gold-thread-path" d="M -50 300 C 200 450, 300 150, 500 300 C 700 450, 800 150, 1050 300" />
+  </svg>
+
+  <!-- 로고 박스의 onclick 은 제거 -->
+  <div class="start-logo-box">
+    <img src="./SVG/ennlogo-kiriko.svg" alt="鮨と和食 人結 로고">
+  </div>
+
+  <div class="start-title-vertical">鮨と和食 人結</div>
+  <!-- 힌트 문구도 자연스럽게 CLICK TO ENTER 로 변경하면 더 좋습니다 -->
+  <div class="start-click-hint">CLICK TO ENTER</div>
+</div>
+
+  <!-- 2. Slide Menu Lobby Screen -->
+  <div id="lobby-screen">
+    <header class="lobby-header">
+      <div class="lobby-logo-box" onclick="goToStartPage()" title="Start Page">
+        <img src="./SVG/ennlogo-kiriko.svg" alt="Sushi & Washoku Hitomusubi Logo">
+      </div>
+      <div class="lobby-top-right">
+        <div class="lang-select">
+          <span>EN</span> / <a href="index.html">JA</a>
+        </div>
+        <button class="close-btn" onclick="closeLobby()" title="Close">✕</button>
+      </div>
+    </header>
+
+    <nav class="lobby-menu-nav">
+      <a onclick="navigateToSection('omoi')" class="lobby-menu-item">Philosophy</a>
+      <a onclick="navigateToSection('waza')" class="lobby-menu-item">Craftsmanship</a>
+      <a onclick="navigateToSection('menu')" class="lobby-menu-item">Menu</a>
+      <a onclick="navigateToSection('info')" class="lobby-menu-item">Info</a>
+      <a onclick="navigateToSection('reserve')" class="lobby-menu-item">Reservation</a>
+    </nav>
+
+    <footer class="lobby-footer">
+      <div class="lobby-sns">
+        <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="lobby-copyright">
+        © 2026 SUSHITOWASHOKU ENN. Privacy policy
+      </div>
+    </footer>
+  </div>
+
+  <!-- 3. Main Content Container -->
+  <main>
+
+    <!-- [HTML 1] Philosophy (Omoi) Section -->
+    <section id="omoi" class="section-block is-active">
+      <div class="hero-section">
+        <h1 class="hero-title-vertical reveal">Philosophy</h1>
+        <div class="scroll-guide reveal delay-1">
+          <span class="scroll-text">SCROLL</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+
+      <div class="omoi-main-wrapper">
+        <div class="omoi-poem-wrapper reveal delay-1">
+          <div class="v-line main-title">"Connecting Once-in-a-Lifetime Encounters"</div>
+          <div class="v-line sub-location">Sendai · Kokubuncho</div>
+          <div class="v-line">A refined space filled with tranquil elegance.</div>
+          <div class="v-line">What we offer is not merely a meal,</div>
+          <div class="v-line">but a timeless moment to cherish.</div>
+          <div class="v-line space-left">Harnessing the rich blessings of Tohoku</div>
+          <div class="v-line">and the refined spirit of Edomae craftsmanship.</div>
+          <div class="v-line space-left">Exclusively crafted for just four parties a day,</div>
+          <div class="v-line">we devote our heart and honed techniques to every piece.</div>
+          <div class="v-line space-left">May you enjoy a memorable banquet</div>
+          <div class="v-line">where people and exquisite flavors bind as one.</div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <nav class="footer-nav-vertical reveal">
+          <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+          <a onclick="navigateToSection('info')" class="footer-nav-item">Info</a>
+          <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+          <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+          <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+        </nav>
+
+        <div class="footer-bottom reveal">
+          <div class="footer-sns">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+          <div class="footer-copyright">
+            © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+          </div>
+          <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+        </div>
+      </footer>
+    </section>
+
+    <!-- [HTML 2] Craftsmanship (Waza) Section -->
+    <section id="waza" class="section-block">
+      <div class="hero-section">
+        <h1 class="hero-title-vertical reveal">Craftsmanship</h1>
+        <div class="scroll-guide reveal delay-1">
+          <span class="scroll-text">SCROLL</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+
+      <div class="waza-main-wrapper">
+        <div class="waza-poem-wrapper reveal delay-1">
+          <div class="v-line">Traditional Edomae preparation.</div>
+          <div class="v-line">Sourced via exclusive channels nationwide,</div>
+          <div class="v-line">fresh fish carefully selected solely for "Hitomusubi".</div>
+          <div class="v-line">Meticulous prep work bringing out peak umami flavors,</div>
+          <div class="v-line">paired with local Sasanishiki rice seasoned with rich red vinegar.</div>
+          <div class="v-line space-left last-line">Savor the artisan's technique and aesthetics in every single piece.</div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <nav class="footer-nav-vertical reveal">
+          <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+          <a onclick="navigateToSection('info')" class="footer-nav-item">Info</a>
+          <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+          <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+          <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+        </nav>
+
+        <div class="footer-bottom reveal">
+          <div class="footer-sns">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+          <div class="footer-copyright">
+            © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+          </div>
+          <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+        </div>
+      </footer>
+    </section>
+
+    <!-- [HTML 3] Menu Section -->
+    <section id="menu" class="section-block">
+      <div class="hero-section">
+        <h1 class="hero-title-vertical reveal">Menu</h1>
+        <div class="scroll-guide reveal delay-1">
+          <span class="scroll-text">SCROLL</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+
+      <div class="menu-main-wrapper">
+        <div class="menu-container">
+          
+          <div class="menu-section-header reveal">
+            <div class="menu-section-sub-title">Omakase Course</div>
+            <h2 class="menu-section-main-title">Savor Seasonal Delicacies</h2>
+          </div>
+
+          <div class="course-list">
+            <div class="course-item reveal delay-1">
+              <div class="course-main-row">
+                <h3 class="course-name">Kiwami Sushi Course</h3>
+                <div class="course-price">¥11,000</div>
+              </div>
+              <div class="course-desc-box">
+                Appetizer · Assorted Dish · Special Delicacy · 10 Pieces of Edomae Sushi · Dessert
+              </div>
+            </div>
+
+            <div class="course-item reveal delay-2">
+              <div class="course-main-row">
+                <h3 class="course-name">SPECIAL Omakase Course</h3>
+                <div class="course-price">¥22,000</div>
+              </div>
+              <div class="course-desc-box">
+                Appetizer · Sashimi · Main Dish (Snow Crab / Sendai Beef) · 10 Premium Sushi Pieces · Dessert
+              </div>
+            </div>
+
+            <div class="course-item reveal delay-3">
+              <div class="course-main-row">
+                <h3 class="course-name">VIP Guests Special Course</h3>
+                <div class="course-price">¥28,500</div>
+              </div>
+              <div class="course-desc-box">
+                Appetizer · Seasonal Starters · Warm Dish · 8 Ultimate Sushi Pieces · Dessert (Limited to 4 parties/day)
+              </div>
+            </div>
+          </div>
+
+          <div class="course-notice-box reveal">
+            * All prices include tax.<br>
+            * Dishes and sake selections vary daily based on seasonal availability.
+          </div>
+
+          <div class="single-menu-section reveal">
+            <div class="menu-section-header">
+              <div class="menu-section-sub-title">Single Dishes & Sake</div>
+              <h2 class="menu-section-main-title">Single Dishes & Japanese Sake</h2>
+            </div>
+
+            <div class="tab-header">
+              <button class="tab-btn active" onclick="switchCategory(event, 'food')">Single Dishes</button>
+              <button class="tab-btn" onclick="switchCategory(event, 'drink')">Japanese Sake</button>
+            </div>
+
+            <div class="single-menu-list" id="singleMenuList">
+              <!-- Dynamic Content -->
+            </div>
+
+            <div class="single-notice-box">
+              * In addition to these, we offer various seasonal limited dishes and curated sakes.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <nav class="footer-nav-vertical reveal">
+          <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+          <a onclick="navigateToSection('info')" class="footer-nav-item">Info</a>
+          <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+          <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+          <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+        </nav>
+
+        <div class="footer-bottom reveal">
+          <div class="footer-sns">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+          <div class="footer-copyright">
+            © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+          </div>
+          <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+        </div>
+      </footer>
+    </section>
+
+    <!-- [HTML 4] Information Section -->
+    <section id="info" class="section-block">
+      <div class="hero-section">
+        <h1 class="hero-title-vertical reveal">Info</h1>
+        <div class="scroll-guide reveal delay-1">
+          <span class="scroll-text">SCROLL</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+
+      <div class="info-main-wrapper">
+        <div class="info-container">
+          
+          <div class="info-section-header reveal">
+            <div class="info-section-sub-title">Restaurant Info</div>
+            <h2 class="info-section-main-title">Access & Details</h2>
+          </div>
+
+          <div class="info-grid reveal delay-1">
+            
+            <div class="info-left-panel">
+              <div class="tel-card">
+                <div class="tel-sub">Phone Reservations & Inquiries</div>
+                <a href="tel:0222658388" class="tel-number">022-265-8388</a>
+                <div class="tel-hours">Hours: 17:30 – 23:00</div>
+              </div>
+
+              <div class="building-card">
+                <div class="building-card-content">
+                  Located at<br>
+                  <span class="nobreak-line"><strong>"DK Ichibancho Bldg. 1F"</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-table">
+              
+              <div class="info-row">
+                <div class="info-label">Name</div>
+                <div class="info-value">Sushi & Washoku Hitomusubi (ENN)</div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">Address</div>
+                <div class="info-value">
+                  〒980-0811<br>
+                  1F DK Ichibancho Bldg., 2-7-9 Ichibancho, Aoba-ku, Sendai, Miyagi
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">Access</div>
+                <div class="info-value">
+                  3-min walk from "Aobadori-Ichibancho Station" Exit South 1 (Tozai Line)<br>
+                  9-min walk from JR Senseki Line "Aoba-dori Station"
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">Hours</div>
+                <div class="info-value">17:30 – 23:00</div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">Closed</div>
+                <div class="info-value">Mondays</div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">Parking</div>
+                <div class="info-value">
+                  None
+                  <div class="info-note">*Coin parking lots available nearby.</div>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">Private</div>
+                <div class="info-value">
+                  Available
+                  <div class="info-note">*Please consult with store / Limited to 4 parties per day</div>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">Card</div>
+                <div class="info-value">Accepted (VISA, Master, JCB, AMEX)</div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">QR Pay</div>
+                <div class="info-value">Not Accepted</div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <nav class="footer-nav-vertical reveal">
+          <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+          <a onclick="navigateToSection('info')" class="footer-nav-item">Info</a>
+          <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+          <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+          <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+        </nav>
+
+        <div class="footer-bottom reveal">
+          <div class="footer-sns">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+          <div class="footer-copyright">
+            © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+          </div>
+          <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+        </div>
+      </footer>
+    </section>
+
+    <!-- [HTML 5] Reservation Section -->
+    <section id="reserve" class="section-block">
+      <div class="hero-section">
+        <h1 class="hero-title-vertical reveal">Reservation</h1>
+        <div class="scroll-guide reveal delay-1">
+          <span class="scroll-text">SCROLL</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+
+      <div class="reserve-main-wrapper">
+        <div class="reserve-container">
+          
+          <div class="reserve-section-header reveal">
+            <div class="reserve-section-sub-title">Bookings</div>
+            <h2 class="reserve-section-main-title">Reservations & Contact</h2>
+          </div>
+
+          <div class="external-reserve-box reveal delay-1">
+            <div class="ext-box-title">【 Partner Reservation Platforms 】</div>
+            <div class="ext-box-desc">
+              If you wish to use membership points or benefits,<br>
+              please book through our affiliated booking sites below.
+            </div>
+            <div class="ext-btn-group">
+              <a href="#" class="ext-btn" target="_blank">Book via Hitosara ➔</a>
+              <a href="#" class="ext-btn" target="_blank">Book via Ikyu Restaurant ➔</a>
+            </div>
+          </div>
+
+          <div class="divider-row reveal">
+            <span class="divider-text">OR DIRECT WEB INQUIRY</span>
+          </div>
+
+          <form class="contact-form reveal delay-1" onsubmit="event.preventDefault(); alert('Thank you. Your inquiry has been received.');">
+            
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label">Full Name</label>
+                <span class="required-badge">Required</span>
+              </div>
+              <input type="text" class="form-input" placeholder="e.g. John Smith" required>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label">Phone Number</label>
+                <span class="required-badge">Required</span>
+              </div>
+              <input type="tel" class="form-input" placeholder="090-xxxx-xxxx" required>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label">Email Address</label>
+                <span class="required-badge">Required</span>
+              </div>
+              <input type="email" class="form-input" placeholder="xxxx@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label">Preferred Course</label>
+                <span class="required-badge">Required</span>
+              </div>
+              <select class="form-input form-select" required>
+                <option value="" disabled selected>Please select a course</option>
+                <option value="seat_only">Seat Only (Choose menu on the day)</option>
+                <option value="course_11000">Kiwami Sushi Course (¥11,000)</option>
+                <option value="course_22000">SPECIAL Omakase Course (¥22,000)</option>
+                <option value="course_28500">VIP Guests Special Course (¥28,500)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label">Date</label>
+                <span class="required-badge">Required</span>
+              </div>
+              <input type="text" id="customDatePicker" class="form-input date-input-large" placeholder="Select a date" readonly required>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label">Number of Guests</label>
+                <span class="required-badge">Required</span>
+              </div>
+              <div class="click-option-grid-7">
+                <div class="click-option-item">
+                  <input type="radio" id="p2" name="people_count" value="2 Guests" checked required>
+                  <label for="p2" class="click-option-label">2</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="p3" name="people_count" value="3 Guests">
+                  <label for="p3" class="click-option-label">3</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="p4" name="people_count" value="4 Guests">
+                  <label for="p4" class="click-option-label">4</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="p5" name="people_count" value="5 Guests">
+                  <label for="p5" class="click-option-label">5</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="p6" name="people_count" value="6 Guests">
+                  <label for="p6" class="click-option-label">6</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="p7" name="people_count" value="7 Guests">
+                  <label for="p7" class="click-option-label">7</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="p8" name="people_count" value="8 Guests">
+                  <label for="p8" class="click-option-label">8</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label">Reservation Time</label>
+                <span class="required-badge">Required</span>
+              </div>
+              <div class="click-option-grid-7">
+                <div class="click-option-item">
+                  <input type="radio" id="t1" name="reserve_time" value="17:30" required>
+                  <label for="t1" class="click-option-label">17:30</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="t2" name="reserve_time" value="18:00">
+                  <label for="t2" class="click-option-label">18:00</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="t3" name="reserve_time" value="18:30">
+                  <label for="t3" class="click-option-label">18:30</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="t4" name="reserve_time" value="19:00">
+                  <label for="t4" class="click-option-label">19:00</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="t5" name="reserve_time" value="19:30">
+                  <label for="t5" class="click-option-label">19:30</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="t6" name="reserve_time" value="20:00">
+                  <label for="t6" class="click-option-label">20:00</label>
+                </div>
+                <div class="click-option-item">
+                  <input type="radio" id="t7" name="reserve_time" value="20:30">
+                  <label for="t7" class="click-option-label">20:30</label>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="form-submit-btn">SUBMIT RESERVATION</button>
+
+          </form>
+
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <nav class="footer-nav-vertical reveal">
+          <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+          <a onclick="navigateToSection('info')" class="footer-nav-item">Info</a>
+          <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+          <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+          <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+        </nav>
+
+        <div class="footer-bottom reveal">
+          <div class="footer-sns">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+          <div class="footer-copyright">
+            © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+          </div>
+          <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- Script for English Version -->
+  <script src="script.js"></script>
+
+</body>
+</html>
